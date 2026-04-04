@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test-web</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="header-title">
+                <h1>EVENT REGISTRATION</h1>
+            </div>
+
+            <div class="uit-name">
+                <span class="dot"></span>
+                <span class="uit">Institute of Technology</span>
+            </div>
+        </div>
+
+        <!-- Home Page -->
+         {% if page == "home" %}
+        <div class="container">
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/box1.jpg') }}" alt="Image 1" class="box-image">
+                <h2>Hackathon</h2>
+                <span class="box-description">9 April 2026 → 10 April 2026 </span>
+                <button class="Register_button" onclick="window.location.href='/hackathon'">Register</button>
+            </div>
+
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/box2.jpg') }}" alt="Image 2" class="box-image">
+                <h2>Workshop</h2>
+                <span class="box-description">15th April 2026</span>
+                <button class="Register_button" onclick="window.location.href='/workshop'">Register</button>
+            </div>
+        </div>
+
+        <!-- Hackathon Page -->
+        {% elif page == "hackathon" %}
+        <div class="hackathon-form">
+            <h2>Hackathon Registration</h2>
+            
+            <form action="/hackathon" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="uni_id">UNI ID:</label>
+                    <input type="text" id="uni_id" name="uni_id" required>
+                </div>
+
+                <button type="submit" class="Register_button">Register</button>
+            </form>
+
+        </div>
+
+        <!-- Workshop Page -->
+        {% elif page == "workshop" %}
+        <div class="workshop-form">
+            <h2>Workshop Registration</h2>
+            
+            <form action="/workshop" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="uni_id">UNI ID:</label>
+                    <input type="text" id="uni_id" name="uni_id" required>
+                </div>
+
+                <button type="submit" class="Register_button">Register</button>
+            </form>
+            
+        </div>
+
+        <!-- Admin Page -->
+        {% elif page == "admin" %}
+        <div class="admin-page">
+            <h2>Registered Users</h2>
+            <table class="admin-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>UNI ID</th>
+                    <th>Event</th>
+                    <th>Action</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>
+                        <a href="/delete/{{ user[0] }}" class="delete-button"> 
+                            <button>Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        {% endif %}
+
+        {% if page != "admin" %}
+        <div class="admin-btn">
+            <button class="admin-button" onclick="ask_password()">Admin</button>
+        </div>
+        {% endif %}
+
+        {% if message %}
+        <script>
+            alert("{{ message }}");
+        </script>
+        {% endif %}
+
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>
