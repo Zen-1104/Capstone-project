@@ -29,10 +29,6 @@ The application allows users to register for events such as hackathons and works
 
 ## Project Structure
 
-## 📁 Project Structure
-
-## 📁 Project Structure
-
 ```bash
 .
 ├── app.py
