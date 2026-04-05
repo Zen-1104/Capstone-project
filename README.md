@@ -29,32 +29,51 @@ The application allows users to register for events such as hackathons and works
 
 ## Project Structure
 
-├── app.py  
-├── database.db  
-├── templates/  
-│   └── index.html  
-├── static/  
-│   ├── style.css  
-│   ├── script.js  
-│   └── images/  
-└── .gitignore  
+## 📁 Project Structure
 
----
+## 📁 Project Structure
+
+```bash
+.
+├── app.py
+├── .gitignore
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   ├── style.css
+│   ├── script.js
+│   └── images/
+
+```
 
 ## How to Run the Project Locally
 
 1. Clone the repository:
+
+```bash
 git clone https://github.com/Zen-1104/Capstone-project
-cd <Capstone-project>
+cd Capstone-project
+```
 
 2. Install dependencies:
+
+```bash
 pip install flask  
+```
 
 3. Run the application:
+
+```bash
 python3 app.py  
+```
 
 4. Open in browser:
+
+```bash
 http://127.0.0.1:5001  
+```
 
 ---
 
