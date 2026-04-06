@@ -1,37 +1,98 @@
 body {
-    background-color: #eef3f8;
+    background: url('/static/images/background.png') no-repeat center center/cover;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #1a1a1a;
+    margin: 0;
+    min-height: 100vh;
+    overflow-y: scroll;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: url('/static/images/background.png') no-repeat center/cover;
+    
+    opacity: 0.15; 
+    z-index: -1;
 }
 
 .container {
-    display: flex;
-    justify-content: center;          
-    gap: 20px;            
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;  
 }
 
 .box {
-    border: 1px solid black;
-    background-color: rgb(90, 219, 255, 0.1);
-    border-radius: 15px;
-    border: none;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+
+    border-radius: 20px;
+    padding: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;   
-    justify-content: center; 
+    align-items: stretch;
+    height: 100%;
+}
+
+.box img {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.box:hover {
+    transform: translateY(-5px);
 }
 
 h1 {
     font-family: 'Playfair Display', serif;
-    letter-spacing: 8px;
-    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 8.5px;
+    margin-top: 12px;
+    text-transform: uppercase;
+
     display: flex;
     flex-direction: column;
     align-items: center;   
     justify-content: center; 
-    
 }
 
-.box-description { padding-bottom: 15px; }
+.box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+.box-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 10px 0 5px 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.box-description { 
+    text-align: left;
+    margin-bottom: -10px;
+
+    font-size: 15px;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
 
 .dot {
     height: 10px;
@@ -43,115 +104,277 @@ h1 {
 }
 
 .uit {
-    font-size: large;
+    font-size: 16px;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+    margin-top: -2px;
 }
 
 .header {
+    max-width: 1050px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    border: 2px solid black;
-    border-radius: 25px;
-    padding: 20px 10px;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
 
-    max-width: 925px;   
+    border-radius: 20px;
+    padding: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+
     margin: 20px auto;
 }
 
 .Register_button {
-    background-color: rgb(90, 219, 255, 0.5);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    grid-column: span 2;
+    justify-self: center;
 }
 
-.Register_button:hover { background-color: rgb(90, 219, 255); }
+.Register_button:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.Register_button:active {
+    transform: scale(0.98);
+}
+
+.Register_button:hover { 
+    transform: translateY(-5px); 
+    background-color: rgba(255, 255, 255, 0.46);
+    background-color: 0.8s ease;
+}
 
 .hackathon-form, .workshop-form {
-    width: 400px;
-    margin: 50px auto;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    
+    border-radius: 20px;
     padding: 20px;
-    border: 2px solid blue;
-    border-radius: 10px;
-    text-align: center;
+    
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    
+    grid-column: span 2;
+    gap: 25px;
+    max-width: 1050px;
+    margin: auto;
 }
 
-.form-group { margin-bottom: 15px; }
+.hackathon-form form, .workshop-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.hackathon-form h2, .workshop-form h2 {
+    text-align: center;
+    grid-column: span 2;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.hackathon-form form .Register_button,
+.workshop-form form .Register_button {
+    width: 100%;
+    justify-self: stretch;   
+    grid-column: span 2;     
+}
+
+.form-group { 
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
 
 .form-group label {
     display: block;
     text-align: left;
-    width: 80%;
-    margin: 0 auto 5px auto;
+    width: 100%;
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
 }
 
 .form-group input {
-    width: 80%;
-    padding: 8px;
+    width: 100%;
+    box-sizing: border-box; 
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #222;
+
+    border: none;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 2px rgba(100, 150, 255, 0.4);
 }
 
 .admin-button {
-    font-family: 'Playfair Display', serif;
-    font-size: medium;
-    background-color: transparent;
-    border: 1.5px solid black;
-    padding: 10px 10px;
-    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    width: 100px;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
     cursor: pointer;
 }
 
-.admin-btn {
-    text-align: center;
-    margin-top: 25px;
+.admin-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transition: all 0.3s ease;
 }
 
 .admin-page {
-    width: 80%;
+    max-width: 1070px;
+    padding: 0;
     margin: 40px auto;
     text-align: center;
 }
 
+.admin-page h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
 .admin-table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 1100px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
     margin-top: 20px;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+
+    border-radius: 15px;
     overflow: hidden;
+    table-layout: fixed;
+
+    border-spacing: 0;
+    border-collapse: separate;
+    box-sizing: border-box;
 }
 
 .admin-table th {
-    background-color: rgb(90, 219, 255, 0.8);
-    color: white;
     padding: 12px;
-    text-align: center;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+.admin-table thead tr {
+    background: linear-gradient(
+        135deg,
+        rgba(150, 140, 255, 0.45),
+        rgba(120, 170, 255, 0.65)
+    );
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.2);
 }
 
 .admin-table td {
-    padding: 10px;
+    padding: 14px 10px;
     border-bottom: 1px solid #ddd;
-    text-align: center;
+    
+    background: rgba(255, 255, 255, 0.22);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.admin-table tr:nth-child(even) { background-color: #f5f5f5; }
+.admin-table th,
+.admin-table td {
+    text-align: center;
+    word-wrap: break-word;
+}
 
-.admin-table tr:hover { background-color: #e6ecff; }
+.admin-table tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.admin-table tr:hover td {
+    background: rgba(180, 190, 255, 0.25);
+}
 
 .delete-button button {
-    padding: 6px 10px;
+    padding: 6px 14px;
     border: none;
-    background-color: rgb(255, 0, 0, 0.7);
+    background-color: rgba(255, 0, 0, 0.75);
     color: white;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
+.delete-button {
+    text-align: center;
+}
+
 .delete-button button:hover { background-color: rgb(255, 0, 0); }
+
+/* ID */
+.admin-table th:nth-child(1),
+.admin-table td:nth-child(1) {
+    width: 50px;
+}
+
+/* Action */
+.admin-table th:nth-child(7),
+.admin-table td:nth-child(7) {
+    width: 110px;
+}
+
+/* Email */
+.admin-table td:nth-child(5) {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .alert {
     background-color: rgb(255, 0, 0, 0.7);
@@ -161,16 +384,234 @@ h1 {
     margin-top: 20px;
 }
 
-.table-header {
+.admin-top {
+    width: 1100px; 
+    position: relative; 
+    left: 50%;          
+    transform: translateX(-50%); 
+    margin: 10px 0; 
+    gap: 20px;
+
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-top .admin-info {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+
+}
+
+.admin-top .search-input {
+    width: 250px;
+    flex-shrink: 0;
 }
 
 .search-input {
-    padding: 8px 12px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #222;
+
+    border: none;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.638);
+    backdrop-filter: blur(8px);
+
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.footer {
+    width: 1070px;
+    margin: 40px auto 20px auto;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.footer-left {
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-info {
+    max-width: 100%;
+    margin: 10px auto 20px auto;
+    padding: 12px 20px;
+
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgba(0,0,0,0.7);
+}
+
+.section-divider {
+    width: 500px;
+    height: 2px;
+    margin: 10px auto 25px auto;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(140, 160, 255, 0.8),
+        transparent
+    );
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    *, *::before, *::after {
+        box-sizing: border-box !important;
+    }
+
+    html, body {
+        overflow-x: hidden;
+    }
+
+    body {
+        background-attachment: scroll !important;
+        background-position: top center !important;
+    }
+
+    .container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100%;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .box {
+        width: 100%;
+        margin: 0;
+        height: auto;
+    }
+
+    .box-content {
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .box-description {
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .header,
+    .footer,
+    .hackathon-form,
+    .workshop-form {
+        width: calc(100% - 30px) !important;
+        margin: 15px auto !important;
+    }
+
+    .hackathon-form form,
+    .workshop-form form {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .form-group input {
+        width: 100%;
+    }
+
+    .box img {
+        height: 180px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .admin-page {
+        width: 100%;
+        margin: 20px 0;
+        padding: 0 15px;
+    }
+
+    .admin-top {
+        width: 100% !important;
+        position: static !important;
+        transform: none !important;
+        flex-direction: column;
+        margin: 0 auto 15px auto !important;
+    }
+
+    .admin-info {
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        margin: 0 auto;
+    }
+
+    .admin-top .search-input {
+        width: 100%;
+    }
+
+    .admin-table {
+        display: block;
+        width: 100% !important;
+        overflow-x: auto;
+        white-space: nowrap;
+        position: static !important;
+        transform: none !important;
+        margin: 0 auto !important;
+    }
+
+    .admin-table th,
+    .admin-table td,
+    .delete-button button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .section-divider {
+        width: calc(100% - 30px) !important;
+        margin: 15px auto !important;
+        box-sizing: border-box;
+    }
 }

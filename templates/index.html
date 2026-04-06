@@ -5,6 +5,7 @@
         <title>Test-web</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="header">
@@ -21,18 +22,31 @@
         <!-- Home Page -->
          {% if page == "home" %}
         <div class="container">
+
             <div class="box">
-                <img src="{{ url_for('static', filename='images/box1.jpg') }}" alt="Image 1" class="box-image">
-                <h2>Hackathon</h2>
-                <span class="box-description">9 April 2026 → 10 April 2026 </span>
-                <button class="Register_button" onclick="window.location.href='/hackathon'">Register</button>
+                <img src="{{ url_for('static', filename='images/box1.jpg') }}" class="box-image">
+
+                <div class="box-content">
+                    <h2>Hackathon</h2>
+                    <span class="box-description">9 April 2026 → 10 April 2026</span>
+                </div>
+
+                <button class="Register_button" onclick="window.location.href='/hackathon'">
+                    Register
+                </button>
             </div>
 
             <div class="box">
-                <img src="{{ url_for('static', filename='images/box2.jpg') }}" alt="Image 2" class="box-image">
-                <h2>Workshop</h2>
-                <span class="box-description">15th April 2026</span>
-                <button class="Register_button" onclick="window.location.href='/workshop'">Register</button>
+                <img src="{{ url_for('static', filename='images/box2.jpg') }}" class="box-image">
+
+                <div class="box-content">
+                    <h2>Workshop</h2>
+                    <span class="box-description">15th April 2026</span>
+                </div>
+
+                <button class="Register_button" onclick="window.location.href='/workshop'">
+                    Register
+                </button>
             </div>
         </div>
 
@@ -48,8 +62,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="uni_id">UNI ID:</label>
+                    <label for="uni_id">Uni ID:</label>
                     <input type="text" id="uni_id" name="uni_id" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Class">Class:</label>
+                    <input type="text" id="class" name="class" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
 
                 <button type="submit" class="Register_button">Register</button>
@@ -69,8 +93,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="uni_id">UNI ID:</label>
+                    <label for="uni_id">Uni ID:</label>
                     <input type="text" id="uni_id" name="uni_id" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Class">Class:</label>
+                    <input type="text" id="class" name="class" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
 
                 <button type="submit" class="Register_button">Register</button>
@@ -82,18 +116,26 @@
         {% elif page == "admin" %}
         <div class="admin-page">
             <h2>Registered Users</h2>
-
-            <div class="table-header">
-                <input type="text" id="search-input" class="search-input" placeholder="Search">
+            <div class="section-divider"></div>
+            
+        <div class="admin-top">
+            <div class="admin-info">
+                <span>Total Users: {{ users|length }}</span>
+                <span>Events: Hackathon / Workshop</span>
             </div>
 
+            <input type="text" id="search-input" class="search-input" placeholder="Search">
+        </div>
+            
             <table class="admin-table">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>UNI ID</th>
-                        <th>Event</th>
+                        <th>Uni ID</th>
+                        <th>Class</th>
+                        <th>Email</th>
+                        <th>Events</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -105,8 +147,10 @@
                             <td>{{ user[1] }}</td>
                             <td>{{ user[2] }}</td>
                             <td>{{ user[3] }}</td>
+                            <td>{{ user[4] }}</td>
+                            <td>{{ user[5] }}</td>
                             <td>
-                                <a href="/delete/{{ user[0] }}" class="delete-button"> 
+                                <a href="/delete/{{ user[0] }}" class="delete-button">
                                     <button>Delete</button>
                                 </a>
                             </td>
@@ -119,14 +163,38 @@
         {% endif %}
 
         {% if page != "admin" %}
-        <div class="admin-btn">
-            <button class="admin-button" onclick="ask_password()">Admin</button>
+        <div class="footer">
+            <div class="footer-left">
+                College Event Registration System
+            </div>
+
+            <div class="footer-right">
+                <button class="admin-button" onclick="ask_password()">Admin</button>
+            </div>
         </div>
         {% endif %}
 
-        {% if message %}
+        {% if page == "admin" %}
+        <div class="footer">
+            <div class="footer-left">
+                College Event Registration System
+            </div>
+
+            <div class="footer-right">
+                <button class="admin-button" onclick="window.location.href='/'">Home</button>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if message == "success" %}
         <script>
-            alert("{{ message }}");
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.get("message") === "success") {
+                alert("Registered successfully");
+
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
         </script>
         {% endif %}
 
